@@ -1,0 +1,25 @@
+name: OpenSesamIE
+version: 0.1
+url: https://github.com/jakelever/OpenSesamIE
+resources:
+   full:
+      - PUBMED:
+         format: txt
+         removePMCOADuplicates: True
+      - PMCOA:
+         format: txt
+   test:
+      - PUBMED_CUSTOM:
+         pmids: 24427302
+         format: txt
+         rename: PUBMED
+      - PMCOA_CUSTOM:
+         pmcids: 3960274
+         format: txt
+         rename: PMCOA
+run:
+   - python opensesamie.py --in {IN:PUBMED/%} --out {OUT:output/%.tsv}
+   - python opensesamie.py --in {IN:PMCOA/%} --out {OUT:output/%.tsv}
+   - find {IN:output} -type f | xargs cat | sort | uniq -c > {OUT:results.tsv}
+output: results.tsv
+
