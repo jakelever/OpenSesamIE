@@ -20,6 +20,6 @@ resources:
 run:
    - python opensesamie.py --in {IN:PUBMED/%} --out {OUT:output/%.tsv}
    - python opensesamie.py --in {IN:PMCOA/%} --out {OUT:output/%.tsv}
-   - find {IN:output} -type f | xargs cat | sort | uniq -c > {OUT:results.tsv}
+   - find {IN:output} -type f | xargs cat | tr '[:upper:]' '[:lower:]' | sed '/^\s*$/d'| sort | uniq -c > {OUT:results.tsv}
 output: results.tsv
 
