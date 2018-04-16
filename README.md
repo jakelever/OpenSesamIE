@@ -18,3 +18,17 @@ The usage is below. Input is a plain-text file and output is a tab-delimited fil
 ```
 python opensesamie.py --in doc.txt --out relations.tsv
 ```
+
+## PubRunner
+
+This tool is integrated with PubRunner so it can be executed on a large corpus (e.g. PubMed).
+
+To run the test case (with PubRunner installed):
+```
+pubrunner --test .
+```
+
+And to run across PubMed and PMCOA entirely (which could take a long time):
+```
+pubrunner .
+```
