@@ -29,6 +29,7 @@ if __name__ == '__main__':
 	with open(args.inDoc) as inF:
 		text = inF.read()
 
+	print("Parsing...")
 	nlp = spacy.load('en')
 	doc = nlp(text)
 
@@ -53,6 +54,7 @@ if __name__ == '__main__':
 		if not verb == None:
 			objsMapped[verb].append(t)
 
+	count = 0
 	with open(args.outTSV,'w') as outF:
 		for v in verbs:
 			for subj,obj in itertools.product(subjsMapped[v],objsMapped[v]):
@@ -67,4 +69,7 @@ if __name__ == '__main__':
 				out = [ subjTxt, v.text, objTxt ]
 				text = "\t".join(out)
 				outF.write(text + "\n")
+				count += 1
+
+	print("Output %d subj-predicate-obj triple(s)" % count)
 
